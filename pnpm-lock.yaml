@@ -26,6 +26,9 @@ importers:
       hono:
         specifier: ^4.11.9
         version: 4.11.9
+      kysely:
+        specifier: ^0.28.11
+        version: 0.28.11
     devDependencies:
       '@types/node':
         specifier: ^20.11.17
@@ -233,6 +236,10 @@ packages:
     resolution: {integrity: sha512-Eaw2YTGM6WOxA6CXbckaEvslr2Ne4NFsKrvc0v97JD5awbmeBLO5w9Ho9L9kmKonrwF9RJlW6BxT1PVv/agBHQ==}
     engines: {node: '>=16.9.0'}
 
+  kysely@0.28.11:
+    resolution: {integrity: sha512-zpGIFg0HuoC893rIjYX1BETkVWdDnzTzF5e0kWXJFg5lE0k1/LfNWBejrcnOFu8Q2Rfq/hTDTU7XLUM8QOrpzg==}
+    engines: {node: '>=20.0.0'}
+
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
 
@@ -384,6 +391,8 @@ snapshots:
       resolve-pkg-maps: 1.0.0
 
   hono@4.11.9: {}
+
+  kysely@0.28.11: {}
 
   resolve-pkg-maps@1.0.0: {}
 
