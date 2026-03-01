@@ -1,9 +1,12 @@
 {
   "packageManager": "pnpm@10.28.2",
   "scripts": {
-    "render": "tsx scripts/renderMermaidAscii.ts docs/diagrams/er.mmd"
+    "render": "tsx scripts/renderMermaidAscii.ts docs/diagrams/er.mmd",
+    "spec-workflow": "spec-workflow-mcp .",
+    "spec-workflow:dashboard": "spec-workflow-mcp . --dashboard"
   },
   "devDependencies": {
+    "@pimzino/spec-workflow-mcp": "^2.2.3",
     "beautiful-mermaid": "^0.1.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
