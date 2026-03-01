@@ -10,7 +10,13 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-
+  atlas:
+    image: arigaio/atlas:latest
+    working_dir: /app
+    volumes:
+      - ..:/app
+    depends_on:
+      - db
 volumes:
   pgdata:
 
