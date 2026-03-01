@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { renderMermaidAscii } from "beautiful-mermaid";
 
-const inputPath = process.argv[2] ?? "er.mmd";
+const inputPath = process.argv[2] ?? "docs/diagrams/er.mmd";
 const source = readFileSync(inputPath, "utf8");
 
 const output = renderMermaidAscii(source, {
