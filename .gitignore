@@ -24,3 +24,5 @@ Thumbs.db
 # spec-workflow artifacts
 .spec-workflow/approvals/
 .spec-workflow/archive/
+.spec-workflow/templates/
+.spec-workflow/user-templates/README.md
