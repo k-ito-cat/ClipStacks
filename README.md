@@ -29,7 +29,12 @@
 - DB 停止: `docker compose -f docker/docker-compose.yml down`
 - Atlas バージョン確認: `docker compose -f docker/docker-compose.yml run --rm atlas version`
 - Atlas で DB スキーマ参照: `docker compose -f docker/docker-compose.yml run --rm atlas schema inspect --url "postgres://postgres:postgres@db:5432/lab?sslmode=disable"`
+- migration ファイル生成: `docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate diff --env local <migration_name>`
+- migration 適用: `docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate apply --env local`
 - ER 図 ASCII 描画: `pnpm run render`
+
+補足:
+- Atlas の `env` 設定は `apps/api/atlas.hcl` に記載している
 
 // TODO: 導入メモの続き（Atlasのmigration生成/適用、kysely-codegen、API実装、Web実装）は後続で追記する
 
