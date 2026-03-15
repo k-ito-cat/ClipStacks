@@ -35,6 +35,7 @@
 
 補足:
 - Atlas の `env` 設定は `apps/api/atlas.hcl` に記載している
+- seed は faker などで動的にデータ生成したいなら `ts`、固定データを最小で入れるだけなら `sql` を使う
 
 // TODO: 導入メモの続き（Atlasのmigration生成/適用、kysely-codegen、API実装、Web実装）は後続で追記する
 
