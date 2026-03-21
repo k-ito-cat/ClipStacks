@@ -2,10 +2,10 @@
 
 ## 関連ドキュメント
 
-- プロダクト要件: `docs/product.md`
-- 技術方針: `docs/tech.md`
-- 構成方針: `docs/structure.md`
-- API 設計方針: `docs/api.md`
+- プロダクト要件: `docs/specs/product.md`
+- 技術方針: `docs/specs/tech.md`
+- 構成方針: `docs/specs/structure.md`
+- API 設計方針: `docs/specs/api.md`
 
 ## Get Started
 
