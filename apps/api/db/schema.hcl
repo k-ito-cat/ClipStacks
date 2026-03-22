@@ -1,5 +1,10 @@
 schema "public" {}
 
+enum "priority" {
+  schema = schema.public
+  values = ["high", "medium", "low"]
+}
+
 table "users" {
   schema = schema.public
 
@@ -116,6 +121,11 @@ table "collection_items" {
     null = false
   }
 
+  column "collection_group_id" {
+    type = integer
+    null = true
+  }
+
   column "collection_item_name" {
     type = varchar(255)
     null = false
@@ -130,6 +140,11 @@ table "collection_items" {
     type    = boolean
     null    = false
     default = false
+  }
+
+  column "priority" {
+    type = enum.priority
+    null = true
   }
 
   column "created_at" {
@@ -149,6 +164,55 @@ table "collection_items" {
   }
 
   foreign_key "collection_items_collection_id_fkey" {
+    columns     = [column.collection_id]
+    ref_columns = [table.collections.column.id]
+    on_delete   = CASCADE
+  }
+
+  foreign_key "collection_items_collection_group_id_fkey" {
+    columns     = [column.collection_group_id]
+    ref_columns = [table.collection_groups.column.id]
+  }
+}
+
+table "collection_groups" {
+  schema = schema.public
+
+  column "id" {
+    type = integer
+    null = false
+    identity {
+      generated = ALWAYS
+    }
+  }
+
+  column "collection_id" {
+    type = integer
+    null = false
+  }
+
+  column "collection_group_name" {
+    type = varchar(255)
+    null = false
+  }
+
+  column "created_at" {
+    type    = timestamptz
+    null    = false
+    default = sql("CURRENT_TIMESTAMP")
+  }
+
+  column "updated_at" {
+    type    = timestamptz
+    null    = false
+    default = sql("CURRENT_TIMESTAMP")
+  }
+
+  primary_key {
+    columns = [column.id]
+  }
+
+  foreign_key "collection_groups_collection_id_fkey" {
     columns     = [column.collection_id]
     ref_columns = [table.collections.column.id]
     on_delete   = CASCADE
