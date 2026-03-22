@@ -23,7 +23,8 @@
 6. API を起動する
    - `pnpm --filter api run dev`
 7. ER 図を確認する
-   - `pnpm run render`
+   - Mermaid 再生成: `pnpm run db:schema:mermaid`
+   - ASCII 確認: `pnpm run render`
 
 ## 開発コマンド
 
@@ -33,18 +34,26 @@
 - DB 停止: `docker compose -f docker/docker-compose.yml down`
 - API 開発サーバー起動: `pnpm --filter api run dev`
 - API ビルド: `pnpm --filter api run build`
+- ER 図 Mermaid 再生成: `pnpm run db:schema:mermaid`
 - ER 図 ASCII 描画: `pnpm run render`
 
 ### スキーマ変更時
 
 - `apps/api/db/schema.hcl` を更新する
-- migration ファイル生成: `docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate diff --env local <migration_name>`
-- migration 適用: `docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate apply --env local`
-- migration 状態確認: `docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate status --env local`
+- 必要なら ER 図を再生成する: `pnpm run db:schema:mermaid`
+- migration ファイル生成: `pnpm run db:migrate:diff -- <migration_name>`
+- migration 適用: `pnpm run db:migrate:apply`
+- migration 状態確認: `pnpm run db:migrate:status`
 
 補足:
 - Atlas の `env` 設定は `apps/api/atlas.hcl` に記載している
+- `migrate diff` の `dev` DB は差分計算専用の空 DB として `atlas_dev` を使う
+- `lab` は実際に migration を適用する DB、`atlas_dev` は差分計算用 DB として分けている
+- `atlas_dev` は `docker/initdb/01-create-atlas-dev.sql` で初期化時に作成する
+- 既存の `pgdata` ボリュームを使っている場合は初期化 SQL が再実行されないため、必要なら `atlas_dev` を手動作成するか DB ボリュームを作り直す
+- `db:migrate:diff` は例: `pnpm run db:migrate:diff -- add-collection-groups-and-priority`
+- `pnpm run render` は ASCII 確認用で、ER の線表現は限定的
 
 ### 開発用データ投入時
 
-- seed 実行: `docker compose -f docker/docker-compose.yml exec -T db psql -U postgres -d lab < apps/api/db/seed.sql`
+- seed 実行: `pnpm run db:seed`
