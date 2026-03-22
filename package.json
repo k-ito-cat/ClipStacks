@@ -1,7 +1,12 @@
 {
   "packageManager": "pnpm@10.28.2",
   "scripts": {
-    "render": "tsx scripts/renderMermaidAscii.ts docs/diagrams/er.mmd"
+    "render": "tsx scripts/renderMermaidAscii.ts docs/diagrams/er.mmd",
+    "db:schema:mermaid": "docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas schema inspect --env local --url env://src --format '{{ mermaid . }}' > docs/diagrams/er.mmd",
+    "db:migrate:diff": "docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate diff --env local",
+    "db:migrate:apply": "docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate apply --env local",
+    "db:migrate:status": "docker compose -f docker/docker-compose.yml run --rm -w /app/apps/api atlas migrate status --env local",
+    "db:seed": "docker compose -f docker/docker-compose.yml exec -T db psql -U postgres -d lab < apps/api/db/seed.sql"
   },
   "devDependencies": {
     "beautiful-mermaid": "^0.1.3",

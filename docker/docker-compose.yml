@@ -10,6 +10,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
   atlas:
     image: arigaio/atlas:latest
     working_dir: /app
@@ -19,4 +20,3 @@ services:
       - db
 volumes:
   pgdata:
-
