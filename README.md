@@ -7,6 +7,7 @@
 - 構成方針: `docs/specs/structure.md`
 - API 設計方針: `docs/specs/api.md`
 - デザイン方針: `docs/design/DESIGN.md`
+- デザイン工程: `docs/design/workflow.md`
 
 ## Get Started
 
