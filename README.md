@@ -6,6 +6,7 @@
 - 技術方針: `docs/specs/tech.md`
 - 構成方針: `docs/specs/structure.md`
 - API 設計方針: `docs/specs/api.md`
+- デザイン方針: `docs/design/DESIGN.md`
 
 ## Get Started
 
