@@ -1,3 +1,6 @@
 packages:
   - "apps/*"
   - "packages/*"
+
+# リリースされてから3日経つまではパッケージのインストールを行わない
+minimumReleaseAge: 4320
