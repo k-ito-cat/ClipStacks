@@ -1,4 +1,4 @@
-## bookmark-app-mock
+## ClipStacks
 
 ## 関連ドキュメント
 
