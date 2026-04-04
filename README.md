@@ -1,20 +1,5 @@
 ## ClipStacks
 
-## 関連ドキュメント
-
-- プロダクト要件: `docs/specs/product.md`
-- 用語集: `docs/specs/glossary.md`
-- 技術方針: `docs/specs/tech.md`
-- 構成方針: `docs/specs/structure.md`
-- API 設計方針: `docs/specs/api.md`
-- デザイン方針: `docs/design/DESIGN.md`
-- レイアウト定義: `docs/design/layouts.md`
-- 画面設計: `docs/design/screens.md`
-- コンポーネント設計: `docs/design/components.md`
-- UI パターン: `docs/design/ui-patterns.md`
-- デザイントークン: `docs/design/tokens.md`
-- デザインチェックリスト: `docs/design/checklist.md`
-
 ## Get Started
 
 クローン直後に、現時点の構成を再現するための最小手順。
@@ -54,7 +39,6 @@
 - migration 状態確認: `pnpm run db:migrate:status`
 
 補足:
-- Atlas の `env` 設定は `apps/api/atlas.hcl` に記載している
 - `migrate diff` の `dev` DB は差分計算専用の空 DB として `atlas_dev` を使う
 - `lab` は実際に migration を適用する DB、`atlas_dev` は差分計算用 DB として分けている
 - `atlas_dev` は `docker/initdb/01-create-atlas-dev.sql` で初期化時に作成する
