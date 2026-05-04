@@ -1,7 +1,7 @@
 env "local" {
   src = "file://db/schema.hcl"
-  url = "postgres://postgres:postgres@db:5432/lab?search_path=public&sslmode=disable"
-  dev = "postgres://postgres:postgres@db:5432/atlas_dev?search_path=public&sslmode=disable"
+  url = getenv("DATABASE_URL")
+  dev = getenv("ATLAS_DEV_DATABASE_URL")
 
   migration {
     dir = "file://db/migrations"

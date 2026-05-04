@@ -1,0 +1,6 @@
+[[database]]
+Name = "clip-stacks"
+Provider = "postgres"
+DBName = "lab"
+URL = "postgres://postgres:postgres@localhost:5432/lab?search_path=public&sslmode=disable"
+ReadOnly = false
