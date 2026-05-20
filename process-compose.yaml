@@ -1,0 +1,55 @@
+version: "0.5"
+is_strict: true
+
+processes:
+  db:
+    command: "docker compose -f docker/docker-compose.yml up db"
+    namespace: app
+    shutdown:
+      command: "docker compose -f docker/docker-compose.yml down"
+    readiness_probe:
+      exec:
+        command: "docker compose -f docker/docker-compose.yml exec -T db pg_isready -U postgres -d lab"
+      initial_delay_seconds: 3
+      period_seconds: 3
+      timeout_seconds: 3
+
+  api:
+    command: "nr dev"
+    working_dir: "apps/api"
+    namespace: app
+    depends_on:
+      db:
+        condition: process_healthy
+    readiness_probe:
+      http_get:
+        host: 127.0.0.1
+        scheme: http
+        path: "/"
+        port: 3000
+      initial_delay_seconds: 2
+      period_seconds: 5
+      timeout_seconds: 3
+
+  prototype:
+    command: "nr dev -- --host 127.0.0.1"
+    working_dir: "../project-documents/ClipStacks/prototype"
+    namespace: app
+    depends_on:
+      api:
+        condition: process_started
+
+  lazygit:
+    command: "lazygit"
+    namespace: tools
+    is_interactive: true
+    disabled: true
+
+  lazysql:
+    command: "lazysql 'postgres://postgres:postgres@127.0.0.1:5432/lab?sslmode=disable'"
+    namespace: tools
+    is_interactive: true
+    disabled: true
+    depends_on:
+      db:
+        condition: process_healthy
