@@ -32,8 +32,8 @@ processes:
       timeout_seconds: 3
 
   prototype:
-    command: "nr dev -- --host 127.0.0.1"
-    working_dir: "../project-documents/ClipStacks/prototype"
+    command: "nr dev"
+    working_dir: "./docs/prototype"
     namespace: app
     depends_on:
       api:
