@@ -1,2 +1,7 @@
 [tools]
 node = "24"
+
+[tasks.diagram]
+description = "Preview the ER diagram in a browser"
+interactive = true
+run = "node scripts/previewMermaid.mjs --input docs/diagrams/er.mmd"

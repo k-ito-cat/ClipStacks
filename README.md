@@ -17,7 +17,10 @@
    - `pnpm --filter api run dev`
 7. ER 図を確認する
    - Mermaid 再生成: `pnpm run db:schema:mermaid`
+   - ブラウザプレビュー: `mise run diagram`
    - ASCII 確認: `pnpm run render`
+
+`mise run diagram` は `docs/diagrams/er.mmd` のプレビューサーバーを起動し、表示用 URL をターミナルに出力する。URL をブラウザで開いたまま `.mmd` を保存すると、ページを再読み込みせずに最新の図へ更新される。終了するときは `Ctrl-C` を押す。Zellij 内で URL を開く場合は、マウス操作を Zellij に取得されないよう `Shift` を押しながらクリックする。
 
 ## 開発コマンド
 
@@ -28,6 +31,7 @@
 - API 開発サーバー起動: `pnpm --filter api run dev`
 - API ビルド: `pnpm --filter api run build`
 - ER 図 Mermaid 再生成: `pnpm run db:schema:mermaid`
+- ER 図ブラウザプレビュー: `mise run diagram`
 - ER 図 ASCII 描画: `pnpm run render`
 
 ### スキーマ変更時
