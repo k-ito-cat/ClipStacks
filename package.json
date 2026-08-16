@@ -9,7 +9,7 @@
     "db:seed": "docker compose -f docker/docker-compose.yml exec -T db psql -U postgres -d lab < apps/api/db/seed.sql"
   },
   "devDependencies": {
-    "beautiful-mermaid": "^0.1.3",
+    "beautiful-mermaid": "1.1.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
