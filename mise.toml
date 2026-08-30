@@ -2,6 +2,11 @@
 node = "24"
 
 [tasks.diagram]
-description = "Preview the ER diagram in a browser"
+description = "Render and preview the ER diagram with terminal-browser"
 interactive = true
-run = "node scripts/previewMermaid.mjs --input docs/diagrams/er.mmd"
+run = """
+node scripts/renderMermaidSvg.mjs --input docs/diagrams/er.mmd --output docs/diagrams/er.svg
+
+diagram_url="file://$MISE_PROJECT_ROOT/docs/diagrams/er.svg"
+terminal-browser open "$diagram_url"
+"""
