@@ -10,3 +10,45 @@ node scripts/renderMermaidSvg.mjs --input docs/diagrams/er.mmd --output docs/dia
 diagram_url="file://$MISE_PROJECT_ROOT/docs/diagrams/er.svg"
 terminal-browser open "$diagram_url"
 """
+
+[tasks."db:sync"]
+description = "Generate and apply a migration from schema.hcl, then regenerate the ER diagram"
+interactive = true
+usage = '''
+arg "<name>" help="migration 名"
+flag "-y --yes" help="適用前の確認を省略する"
+'''
+run = """
+set -euo pipefail
+
+migrations_dir="$MISE_PROJECT_ROOT/apps/api/db/migrations"
+
+pnpm run db:migrate:generate -- "$usage_name"
+
+migration_file="$(ls -1 "$migrations_dir"/*_"$usage_name".sql 2>/dev/null | tail -n 1 || true)"
+if [ -z "$migration_file" ]; then
+  echo "schema.hcl と migration は同期済みのため、適用をスキップする"
+  exit 0
+fi
+
+pnpm run db:schema:mermaid
+
+echo
+echo "--- $migration_file ---"
+cat "$migration_file"
+echo
+
+if [ "${usage_yes:-}" != "true" ]; then
+  printf 'この migration を適用する? [y/N]: '
+  read -r reply
+  case "$reply" in
+    y | Y | yes | Yes) ;;
+    *)
+      echo "適用を中止した。生成済み migration は $migration_file に残る"
+      exit 1
+      ;;
+  esac
+fi
+
+pnpm run db:migrate:apply
+"""
